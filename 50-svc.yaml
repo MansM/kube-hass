@@ -6,6 +6,7 @@ metadata:
     app: hass
   name: hass
 spec:
+  loadBalancerIP: 10.0.2.232
   ports:
   - port: 8123
     protocol: TCP
