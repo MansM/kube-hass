@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hass
+  name: hass
+  namespace: hass
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hass
+    spec:
+      containers:
+      - image: homeassistant/home-assistant:0.103.5
+        name: home-assistant
+        command: ['hass', '-c', '/config']
+        resources: {}
+        volumeMounts:
+          - mountPath: /config
+            name: config-volume
+          - mountPath: /config/.storage
+            name: hass-config
+          - name: hass-secrets
+            mountPath: /config/secrets.yaml
+            subPath: secrets.yaml
+      initContainers:
+        - name: init-myservice
+          image: centos:7
+          command: ['bash', '-c', 'yum install -y git && git clone https://github.com/MansM/kube-hass-config /config']
+          volumeMounts:
+            - mountPath: /config
+              name: config-volume
+      volumes:
+        - name: config-volume
+          emptyDir: {}
+        - name: hass-config
+          persistentVolumeClaim: 
+            claimName: hass-data
+        - name: hass-secrets
+          secret:
+            secretName: hass-secrets
+            items:
+              - key: secrets.yaml
+                path: secrets.yaml
+status: {}
