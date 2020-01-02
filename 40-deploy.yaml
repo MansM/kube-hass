@@ -32,6 +32,9 @@ spec:
           - name: hass-secrets
             mountPath: /config/secrets.yaml
             subPath: secrets.yaml
+          - name: hass-secrets
+            mountPath: /config/webostv.conf
+            subPath: webostv.conf
       initContainers:
         - name: init-myservice
           image: centos:7
@@ -51,4 +54,6 @@ spec:
             items:
               - key: secrets.yaml
                 path: secrets.yaml
+              - key: webostv.conf
+                path: webostv.conf
 status: {}
