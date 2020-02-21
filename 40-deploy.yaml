@@ -20,7 +20,7 @@ spec:
         app: hass
     spec:
       containers:
-      - image: homeassistant/home-assistant:0.105.4
+      - image: homeassistant/home-assistant:0.105.5
         name: home-assistant
         command: ['hass', '-c', '/config']
         resources: {}
