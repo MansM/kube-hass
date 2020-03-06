@@ -62,10 +62,10 @@ spec:
           - name: hass-secrets
             mountPath: /config/webostv.conf
             subPath: webostv.conf
-          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/
+          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/sensor.py
             name: sensor
             subPath: sensor.py
-          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/
+          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/switch.py
             name: switch
             subPath: switch.py
       initContainers:
