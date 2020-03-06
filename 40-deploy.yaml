@@ -62,6 +62,12 @@ spec:
           - name: hass-secrets
             mountPath: /config/webostv.conf
             subPath: webostv.conf
+          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/
+            name: sensor
+            subPath: sensor.py
+          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/
+            name: switch
+            subPath: switch.py
       initContainers:
         - name: init-myservice
           image: centos:7
@@ -83,4 +89,16 @@ spec:
                 path: secrets.yaml
               - key: webostv.conf
                 path: webostv.conf
+        - name: sensor
+          configMap:
+            name: sensor
+            items:
+              - key: sensor.py
+                path: sensor.py
+        - name: switch
+          configMap:
+            name: switch
+            items:
+              - key: switch.py
+                path: switch.py
 status: {}
