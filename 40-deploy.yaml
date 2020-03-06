@@ -94,9 +94,11 @@ spec:
             name: sensor
             items:
               - key: sensor.py
+                path: sensor.py
         - name: switch
           configMap:
             name: switch
             items:
               - key: switch.py
+                path: switch.py
 status: {}
