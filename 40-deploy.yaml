@@ -20,7 +20,7 @@ spec:
         app: hass
     spec:
       containers:
-      - image: homeassistant/home-assistant:0.106.6
+      - image: homeassistant/home-assistant:0.107.1
         name: home-assistant
         command: ['hass', '-c', '/config']
         ports:
@@ -63,12 +63,12 @@ spec:
           - name: hass-secrets
             mountPath: /config/webostv.conf
             subPath: webostv.conf
-          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/sensor.py
-            name: sensor
-            subPath: sensor.py
-          - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/switch.py
-            name: switch
-            subPath: switch.py
+          # - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/sensor.py
+          #   name: sensor
+          #   subPath: sensor.py
+          # - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/switch.py
+          #   name: switch
+          #   subPath: switch.py
       initContainers:
         - name: init-myservice
           image: centos:7
@@ -90,16 +90,16 @@ spec:
                 path: secrets.yaml
               - key: webostv.conf
                 path: webostv.conf
-        - name: sensor
-          configMap:
-            name: sensor
-            items:
-              - key: sensor.py
-                path: sensor.py
-        - name: switch
-          configMap:
-            name: switch
-            items:
-              - key: switch.py
-                path: switch.py
+        # - name: sensor
+        #   configMap:
+        #     name: sensor
+        #     items:
+        #       - key: sensor.py
+        #         path: sensor.py
+        # - name: switch
+        #   configMap:
+        #     name: switch
+        #     items:
+        #       - key: switch.py
+        #         path: switch.py
 status: {}
