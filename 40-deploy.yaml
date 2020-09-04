@@ -20,7 +20,7 @@ spec:
         app: hass
     spec:
       containers:
-      - image: homeassistant/home-assistant:0.113.3
+      - image: homeassistant/home-assistant:0.114.4
         name: home-assistant
         command: ['hass', '-c', '/config']
         ports:
@@ -60,9 +60,9 @@ spec:
           - name: hass-secrets
             mountPath: /config/secrets.yaml
             subPath: secrets.yaml
-          - name: hass-secrets
-            mountPath: /config/webostv.conf
-            subPath: webostv.conf
+          # - name: hass-secrets
+          #   mountPath: /config/webostv.conf
+          #   subPath: webostv.conf
           # - mountPath: /usr/src/homeassistant/homeassistant/components/thinkingcleaner/sensor.py
           #   name: sensor
           #   subPath: sensor.py
