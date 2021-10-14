@@ -20,7 +20,7 @@ spec:
         app: hass
     spec:
       containers:
-      - image: homeassistant/home-assistant:2021.10.2
+      - image: homeassistant/home-assistant:2021.10.4
         name: home-assistant
         command: ['hass', '-c', '/config']
         ports:
@@ -70,9 +70,9 @@ spec:
           #   name: switch
           #   subPath: switch.py
       initContainers:
-        - name: init-myservice
-          image: centos:7
-          command: ['bash', '-c', 'yum install -y git && git clone https://github.com/MansM/kube-hass-config /config']
+        - name: git_cloner
+          image: python
+          command: ['bash', '-c', 'git clone https://github.com/MansM/kube-hass-config /config']
           volumeMounts:
             - mountPath: /config
               name: config-volume
