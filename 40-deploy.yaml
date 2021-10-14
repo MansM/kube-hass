@@ -70,7 +70,7 @@ spec:
           #   name: switch
           #   subPath: switch.py
       initContainers:
-        - name: git_cloner
+        - name: gitcloner
           image: python
           command: ['bash', '-c', 'git clone https://github.com/MansM/kube-hass-config /config']
           volumeMounts:
