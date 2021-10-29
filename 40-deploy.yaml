@@ -20,7 +20,7 @@ spec:
         app: hass
     spec:
       containers:
-      - image: homeassistant/home-assistant:2021.10.4
+      - image: homeassistant/home-assistant:2021.10.6
         name: home-assistant
         command: ['hass', '-c', '/config']
         ports:
@@ -71,8 +71,8 @@ spec:
           #   subPath: switch.py
       initContainers:
         - name: gitcloner
-          image: python
-          command: ['bash', '-c', 'git clone https://github.com/MansM/kube-hass-config /config']
+          image: alpine/git
+          command: ['sh', '-c', 'git clone https://github.com/MansM/kube-hass-config /config']
           volumeMounts:
             - mountPath: /config
               name: config-volume

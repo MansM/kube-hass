@@ -1,14 +1,33 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: hass
+#   namespace: hass
+# spec:
+#   rules:
+#   - host: home.mansm.io
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: hass
+#             port: 
+#               number: 80
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: hass
-  namespace: hass
+  name: hasstls
 spec:
-  rules:
-  - host: home.mansm.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: hass
-          servicePort: 80
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`home.mansm.io`)
+    kind: Rule
+    services:
+    - name: hass
+      port: 80
+  tls:
+    certResolver: le
