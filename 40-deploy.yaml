@@ -60,6 +60,8 @@ spec:
           - name: hass-secrets
             mountPath: /config/secrets.yaml
             subPath: secrets.yaml
+          - name: timezone
+            mountPath: /etc/localtime
           # - name: hass-secrets
           #   mountPath: /config/webostv.conf
           #   subPath: webostv.conf
@@ -90,6 +92,9 @@ spec:
                 path: secrets.yaml
               - key: webostv.conf
                 path: webostv.conf
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Europe/Amsterdam
         # - name: sensor
         #   configMap:
         #     name: sensor
